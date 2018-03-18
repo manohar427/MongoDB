@@ -73,3 +73,96 @@ db.student.find(
     "age" : "10"
  }
 )
+//Or operator
+db.student.find(
+ {
+   $or :[{"sname" : "Manohar"},{ "age" : "14"}]
+ }
+)
+
+//And and Or Operator
+db.student.find(
+   {
+     "sname" : "Manohar", $or:[{"age":"10"},{"age":"14"}]
+   }
+)
+
+//Update Operation
+db.student.update(
+   {
+     "_id" : ObjectId("5aae0de2e768a7dcd3498263")
+   },
+   {
+    $set:{"age":"110000"}
+   }
+)
+//multi doc update
+db.student.update(
+   {
+     "sname" : "Manohar"
+   },
+   {
+    $set:{"age":"520"}
+   },
+    {multi:true}
+)
+db.student.find()
+
+db.student.save({ 
+    "_id" : ObjectId("5aae0ddce768a7dcd3498261"), 
+    "sno" : "100", 
+    "sname" : "Manohar", 
+    "age" : "511"
+})
+
+//Delete documents
+db.student.remove(
+ {
+   "_id" : ObjectId("5aae0ddce768a7dcd3498261")
+ }
+)
+
+db.student.remove(
+ {
+   "sname" : "Manohar"
+ },1
+)
+
+db.student.find()
+
+//Projection ,selecting necessary data
+db.student.find({},{"sname":1,"_id":0})
+
+--Using Sort, Skip, and Limit in MongoDB
+db.student.find({},{"sno" :1,"sname":1,"_id":0})
+db.student.find({},{"sno" :1,"sname":1,"_id":0}).limit(2)
+db.student.find({},{"sno" :1,"sname":1,"_id":0}).skip(2)
+db.student.find({},{"sno" :1,"sname":1,"_id":0}).sort({"sno":-1})
+
+//MongoDB Indexing
+use temp
+
+for(i=0;i<100000;i++){
+  db.tempColl.insert({"id":i,"name":"Mark"});
+}
+ db.tempColl.remove()
+  db.tempColl.find()
+
+  db.tempColl.find({"id":99999})
+    db.tempColl.findOne({"id":99999})
+db.tempColl.ensureIndex({"id":1})
+db.tempColl.dropIndex({"id":1})
+
+//MongoDB Aggregation function
+
+
+
+
+
+
+
+
+
+
+
+
