@@ -65,3 +65,11 @@ db.student.find(
  "sno":{ $ne : "100"}
  }
 ).pretty()
+
+--And Operator
+db.student.find(
+ {
+    "sname" : "Manohar", 
+    "age" : "10"
+ }
+)
