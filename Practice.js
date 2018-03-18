@@ -32,7 +32,7 @@ db.student.insert({
 db.student.insert(
 [{
   "sno":"103",
-  "sname":"Manohar3",
+  "sname":"Manohar",
   "age":"13"
 },
 {
@@ -154,15 +154,47 @@ db.tempColl.ensureIndex({"id":1})
 db.tempColl.dropIndex({"id":1})
 
 //MongoDB Aggregation function
-
-
-
-
-
-
-
-
-
-
-
-
+db.student.find()
+db.student.insert(
+[{
+  "sno":"100",
+  "sname":"Ram",
+  "age":"13",
+  "gender":"Male"
+},
+{
+  "sno":"101",
+  "sname":"Kiran",
+  "age":"15",
+  "gender":"Male"
+},
+{
+  "sno":"102",
+  "sname":"Kumar",
+  "age":"14",
+  "gender":"FeMale"
+},
+{
+  "sno":"103",
+  "sname":"Jun",
+  "age":"18",
+  "gender":"Male"
+},
+{
+  "sno":"104",
+  "sname":"Roy",
+  "age":"16",
+  "gender":"Male"
+},
+{
+  "sno":"105",
+  "sname":"Gre",
+  "age":"13",
+  "gender":"FeMale"
+}
+]
+)
+db.student.find()
+db.student.aggregate([{$group:{_id:"$gender",MyResult:{$sum:1}}}])
+db.student.aggregate([{$group:{_id:"$gender",MyResult:{$max:"$age"}}}])
+db.student.aggregate([{$group:{_id:"$gender",MyResult:{$min:"$age"}}}])
